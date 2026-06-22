@@ -14,8 +14,13 @@ def save_tasks(tasks: list) -> None:
     with open("tasks.json", "w") as f:
         f.write(json.dumps(tasks))
 
-add_task("Arise Beru", 1)
 
-add_task("Arise Beru", -2)
-
-save_tasks([{"name": "Arise Beru", "priority": 1}])
+def load_tasks():
+    try:
+        with open("tasks.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        return []
+print(load_tasks())
