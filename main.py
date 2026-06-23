@@ -24,3 +24,21 @@ def load_tasks():
     except json.JSONDecodeError:
         return []
 print(load_tasks())
+
+while True:
+    print("1. Add task")
+    print("2. View tasks")
+    print("3. Quit")
+    choice = input("Choose: ")
+    if choice == "1":
+        name = input("Task name: ")
+        priority = int(input("Priority: "))
+        tasks = load_tasks()
+        new_task = add_task(name, priority)
+        if new_task:
+            tasks.append(new_task)
+            save_tasks(tasks)
+    elif choice == "2":
+        print(load_tasks())
+    elif choice == "3":
+        break
